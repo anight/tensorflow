@@ -18,8 +18,17 @@ package tensorflow
 
 // #include <string.h>
 // #include "tensorflow/c/c_api.h"
+// #include "tensorflow/core/public/version.h"
+//
+// const char *APIVersion() { return TF_VERSION_STRING; }
+//
 import "C"
 
 // Version returns a string describing the version of the underlying TensorFlow
 // runtime.
 func Version() string { return C.GoString(C.TF_Version()) }
+
+// APIVersion returns a string describing the version of the libtensorflow API
+// used to compile golang binding. Normally Version() and APIVersion() should
+// return the same string.
+func APIVersion() string { return C.GoString(C.APIVersion()) }
